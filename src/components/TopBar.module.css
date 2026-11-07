@@ -1,8 +1,9 @@
 .bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas: "brand actions menu";
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 8px 16px;
   width: 100%;
   max-width: 1320px;
   padding: 10px 14px;
@@ -14,6 +15,7 @@
 
 /* ---- brand ---- */
 .brand {
+  grid-area: brand;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -74,11 +76,13 @@
 
 /* ---- actions ---- */
 .actions {
+  grid-area: actions;
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: none;
 }
+
+.menu { grid-area: menu; }
 
 .primary,
 .secondary {
@@ -125,16 +129,23 @@
 /* ---- phones ---- */
 @media (max-width: 720px) {
   .bar {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand menu"
+      "actions actions";
     gap: 12px;
     padding: 12px;
   }
 
-  .brand { justify-content: center; }
+  .brand { gap: 10px; }
+  .badge { width: 48px; height: 48px; }
+  .badge span { font-size: 18px; }
+  .title { font-size: 22px; }
+  .eyebrow { font-size: 12px; }
+  .subtitle { font-size: 13px; }
 
-  .actions { display: grid; grid-template-columns: 1fr 1fr auto; }
+  .actions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 
   .primary,
-  .secondary { height: 44px; padding: 0 10px; font-size: 14px; }
+  .secondary { min-width: 0; height: 44px; padding: 0 10px; font-size: 14px; }
 }

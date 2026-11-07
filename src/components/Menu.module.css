@@ -91,3 +91,18 @@
 .item[data-armed] .itemIcon { background: rgba(255, 255, 255, 0.2); color: #fff; }
 .item[data-armed] .itemLabel,
 .item[data-armed] .itemHint { color: #fff; }
+
+/* Phones: square hamburger button next to the title; label stays for screen readers. */
+@media (max-width: 720px) {
+  .trigger { width: 46px; padding: 0; justify-content: center; }
+  .trigger svg { width: 20px; height: 20px; }
+  .chevron { display: none; }
+  .triggerLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

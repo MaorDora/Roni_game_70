@@ -68,8 +68,11 @@ export function TopBar({ canUndo, roundOver, onUndo, onNewGame, onReset, onRules
           <RotateCcw aria-hidden="true" />
           <span>סיבוב חדש</span>
         </button>
-        <Menu items={menuItems} />
       </nav>
+
+      <div className={styles.menu}>
+        <Menu items={menuItems} />
+      </div>
     </header>
   );
 }

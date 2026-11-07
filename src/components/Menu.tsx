@@ -93,7 +93,7 @@ export function Menu({ items }: { items: MenuItem[] }) {
         onClick={() => (open ? close(false) : setOpen(true))}
       >
         <MenuIcon aria-hidden="true" />
-        <span>תפריט</span>
+        <span className={styles.triggerLabel}>תפריט</span>
         <ChevronDown className={styles.chevron} aria-hidden="true" />
       </button>
 
