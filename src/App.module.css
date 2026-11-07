@@ -1,0 +1,53 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 2.4vh, 28px);
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(12px, 2vh, 24px) clamp(12px, 2vw, 32px) clamp(16px, 3vh, 32px);
+}
+
+/* Teams flank the board: X on the right (RTL start), O on the left. */
+.stage {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) minmax(0, 1fr) minmax(150px, 220px);
+  grid-template-areas: "x board o";
+  align-items: center;
+  gap: clamp(14px, 2.2vw, 36px);
+  width: 100%;
+  max-width: 1320px;
+  flex: 1;
+}
+
+.team[data-slot="X"] { grid-area: x; min-width: 0; }
+.team[data-slot="O"] { grid-area: o; min-width: 0; }
+
+.center {
+  grid-area: board;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 1.8vh, 20px);
+  /* keep the whole game on one screen (projector-friendly) */
+  width: min(100%, calc((100vh - 250px) * 1.33));
+  width: min(100%, calc((100dvh - 250px) * 1.33));
+  min-width: min(100%, 460px);
+  justify-self: center;
+}
+
+@media (max-width: 860px) {
+  .stage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "x o"
+      "board board";
+    align-items: stretch;
+    align-content: start;
+    gap: 12px;
+  }
+
+  .team > * { height: 100%; }
+
+  .center { width: 100%; min-width: 0; }
+}

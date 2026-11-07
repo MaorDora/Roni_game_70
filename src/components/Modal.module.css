@@ -1,0 +1,15 @@
+.dialog[open] {
+  animation: fade 0.18s ease-out;
+}
+
+.dialog[open] > * {
+  animation: rise 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+}

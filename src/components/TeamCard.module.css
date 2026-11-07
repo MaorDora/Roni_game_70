@@ -1,0 +1,124 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 0.8vw, 10px);
+  min-width: 0;
+  padding: clamp(18px, 2vw, 28px) clamp(12px, 1.4vw, 20px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: var(--team);
+}
+
+.card[data-active] {
+  border-color: var(--team);
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 4px var(--team-ring),
+    var(--shadow);
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  width: clamp(52px, 5.5vw, 76px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--team-soft);
+  color: var(--team);
+}
+
+.badge svg { width: 62%; }
+
+.name {
+  width: 100%;
+  min-width: 0;
+  padding: 4px 6px;
+  border: 1px dashed transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--team);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(16px, 1.6vw, 24px);
+  text-align: center;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.name:hover { border-color: var(--line); }
+.name:focus { outline: none; border-color: var(--team); background: var(--team-soft); }
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scoreValue {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(44px, 5.5vw, 80px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.scoreLabel {
+  margin-top: 4px;
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.turn {
+  margin-top: 4px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--team);
+  color: #fff;
+  font-size: clamp(12px, 1.1vw, 15px);
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.card[data-active] .turn { opacity: 1; transform: none; }
+
+@media (max-width: 860px) {
+  .card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 4px 10px;
+    padding: 14px 12px 10px;
+    text-align: start;
+  }
+  .card {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 8px;
+    padding: 14px 10px 12px;
+  }
+  .card[data-active] { transform: none; }
+  .badge { width: 34px; }
+  .name { padding: 2px; font-size: 15px; text-align: start; }
+  .scoreValue { font-size: 30px; }
+  .scoreLabel { display: none; }
+  /* the status bar under the board already says whose turn it is */
+  .turn { display: none; }
+}

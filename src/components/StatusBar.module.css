@@ -1,0 +1,26 @@
+.status:not([data-team]) { --team: var(--ink-3); }
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 10px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.status strong { color: var(--team); font-weight: 700; }
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--team);
+  box-shadow: 0 0 0 4px var(--team-ring, rgba(28, 34, 48, 0.08));
+}

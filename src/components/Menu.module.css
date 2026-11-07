@@ -1,0 +1,93 @@
+.root { position: relative; }
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 14px 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.trigger svg { width: 18px; height: 18px; flex: none; }
+
+.trigger:hover,
+.trigger[data-open] { background: var(--surface-3); border-color: #ddd6ca; }
+
+.chevron { transition: transform 0.2s ease; color: var(--ink-3); }
+.trigger[data-open] .chevron { transform: rotate(180deg); }
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-end: 0;
+  z-index: 20;
+  width: 290px;
+  max-width: calc(100vw - 24px);
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  animation: drop 0.16s ease-out;
+  transform-origin: top left;
+}
+
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+}
+
+.separator {
+  height: 1px;
+  margin: 6px 8px;
+  background: var(--line);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  text-align: start;
+  transition: background 0.12s ease;
+}
+
+.item:hover,
+.item:focus-visible { background: var(--surface-3); outline: none; }
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--surface-3);
+  color: var(--ink-2);
+}
+
+.itemIcon svg { width: 18px; height: 18px; }
+
+.itemText { display: flex; flex-direction: column; min-width: 0; }
+.itemLabel { font-weight: 700; font-size: 15px; color: var(--ink); }
+.itemHint { margin-top: 1px; font-size: 13px; color: var(--ink-3); }
+
+.item[data-danger] .itemIcon { background: #fdeeee; color: var(--danger); }
+.item[data-danger] .itemLabel { color: var(--danger); }
+
+.item[data-armed] { background: var(--danger); }
+.item[data-armed] .itemIcon { background: rgba(255, 255, 255, 0.2); color: #fff; }
+.item[data-armed] .itemLabel,
+.item[data-armed] .itemHint { color: #fff; }

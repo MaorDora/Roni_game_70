@@ -1,0 +1,140 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  max-width: 1320px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+/* ---- brand ---- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* The ring runs through the board's nine hues. */
+.badge {
+  flex: none;
+  width: clamp(54px, 5.5vw, 70px);
+  height: clamp(54px, 5.5vw, 70px);
+  padding: 4px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #f07f77, #e38d3d, #c7a01e, #72ba63, #00c0a8, #00b8e1, #6fa4fc, #b28fef, #de80c0, #f07f77
+  );
+}
+
+.badge span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--surface);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(20px, 2.2vw, 28px);
+  letter-spacing: -0.02em;
+}
+
+.brandText { min-width: 0; }
+
+.eyebrow {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ink-3);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(24px, 2.8vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-size: clamp(13px, 1.2vw, 16px);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+/* ---- actions ---- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primary svg,
+.secondary svg { width: 18px; height: 18px; flex: none; }
+
+.secondary {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.secondary:not(:disabled):hover { background: var(--surface-3); border-color: #ddd6ca; }
+.secondary:disabled { opacity: 0.45; }
+
+.primary {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 6px 16px -8px rgba(28, 34, 48, 0.6);
+}
+
+.primary:hover { background: #2c3446; }
+
+.primary[data-attention] { animation: nudge 1.4s ease-in-out infinite; }
+
+@keyframes nudge {
+  50% { box-shadow: 0 0 0 6px rgba(28, 34, 48, 0.14); }
+}
+
+/* ---- phones ---- */
+@media (max-width: 720px) {
+  .bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .brand { justify-content: center; }
+
+  .actions { display: grid; grid-template-columns: 1fr 1fr auto; }
+
+  .primary,
+  .secondary { height: 44px; padding: 0 10px; font-size: 14px; }
+}

@@ -1,0 +1,25 @@
+.mark {
+  display: block;
+  overflow: visible;
+}
+
+.mark line,
+.mark circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.animated line,
+.animated circle {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animated line:nth-child(2) { animation-delay: 0.2s; }
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}

@@ -1,0 +1,117 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1.1vw, 14px);
+  width: 100%;
+  padding: clamp(8px, 1.1vw, 14px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius-lg) + 4px);
+  box-shadow: var(--shadow);
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 0.9vw, 12px);
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  padding: clamp(8px, 1vw, 14px);
+  border: 1px solid var(--cat-line);
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--cat-fill), var(--cat-fill-2));
+  color: var(--cat-ink);
+  text-align: center;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.3s ease,
+    filter 0.3s ease;
+}
+
+@media (hover: hover) {
+  .cell:not(:disabled):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -8px var(--cat-shadow);
+  }
+
+  .cell:not(:disabled):hover .icon { transform: scale(1.08) rotate(-4deg); }
+}
+
+.cell:not(:disabled):active { transform: translateY(0); box-shadow: none; }
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(38px, 4.2vw, 60px);
+  height: clamp(38px, 4.2vw, 60px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--cat-accent);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s ease;
+}
+
+.icon svg { width: 52%; height: 52%; }
+
+.title {
+  max-width: 100%;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(15px, 2vw, 30px);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+/* ---- taken ---- */
+.cell[data-team] {
+  background: var(--team-soft);
+  border-color: var(--team-ring);
+  color: var(--team);
+}
+
+.mark {
+  width: 44%;
+  height: auto;
+}
+
+.takenLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  font-size: clamp(11px, 1vw, 15px);
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+/* ---- end of round ---- */
+.board[data-over] .cell:not([data-win]) {
+  opacity: 0.5;
+  filter: saturate(0.5);
+}
+
+.cell[data-win] {
+  border-color: var(--team);
+  box-shadow: 0 0 0 3px var(--team);
+  animation: win 1.2s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes win {
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 0 0 5px var(--team), 0 14px 30px -10px var(--team);
+  }
+}
+
+@media (max-width: 860px) {
+  .cell { aspect-ratio: 1; }
+  .title { font-size: clamp(13px, 4.2vw, 22px); }
+  .icon { width: clamp(30px, 9vw, 48px); height: clamp(30px, 9vw, 48px); }
+}

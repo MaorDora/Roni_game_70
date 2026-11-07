@@ -1,0 +1,86 @@
+:root {
+  /* surfaces & text */
+  --bg: #f8f5f0;
+  --surface: #ffffff;
+  --surface-2: #fbfaf7;
+  --surface-3: #f3f0ea;
+  --ink: #1c2230;
+  --ink-2: #4b5466;
+  --ink-3: #8b93a3;
+  --line: #e9e4db;
+  --danger: #c8333d;
+  --focus: #4ba3f7;
+
+  /* teams (hex so every browser renders them) */
+  --team-x: #de3a46;
+  --team-x-soft: #ffedec;
+  --team-x-ring: #de3a4633;
+  --team-o: #285cc2;
+  --team-o-soft: #ecf4ff;
+  --team-o-ring: #285cc233;
+
+  /* shape */
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 1px 2px rgba(28, 34, 48, 0.06), 0 1px 3px rgba(28, 34, 48, 0.06);
+  --shadow: 0 2px 6px rgba(28, 34, 48, 0.05), 0 10px 28px rgba(28, 34, 48, 0.08);
+  --shadow-lg: 0 24px 70px rgba(28, 34, 48, 0.22);
+
+  /* type */
+  --font-body: "Heebo Variable", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-display: "Rubik Variable", "Heebo Variable", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  color-scheme: light;
+}
+
+[data-team="X"] { --team: var(--team-x); --team-soft: var(--team-x-soft); --team-ring: var(--team-x-ring); }
+[data-team="O"] { --team: var(--team-o); --team-soft: var(--team-o-soft); --team-ring: var(--team-o-ring); }
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+html, body, #root { min-height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image: radial-gradient(rgba(28, 34, 48, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; touch-action: manipulation; }
+button:disabled { cursor: default; }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+dialog {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
+}
+
+dialog::backdrop {
+  background: rgba(20, 24, 34, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
